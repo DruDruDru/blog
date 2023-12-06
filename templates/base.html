@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="{% static 'core/js/main.js' %}" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: space-between">
+        <a href="{% url 'post_list' %}"><h1>Главная</h1></a>
+        <nav>
+            {% if user.is_authenticated %}
+                <span><a href="{% url 'post_create' %}">Создать пост</a> |
+                    <a href="{% url 'user_detail' user.pk %}">Профиль</a> |
+                    <a href="{% url 'logout' %}">Выход</a></span>
+            {% else %}
+                <span><a href="{% url 'login' %}">Вход</a>|<a href="{% url 'sighup' %}">Регситрация</a></span>
+            {% endif %}
+        </nav>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

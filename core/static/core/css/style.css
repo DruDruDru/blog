@@ -1,0 +1,149 @@
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 0.5px solid black;
+}
+body {
+    padding: 25px 50px;
+}
+.post-block {
+    border-radius: 5px;
+    border: 2px solid gray;
+    padding: 5px;
+}
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.created-by {
+    display: flex;
+    align-items: center;
+}
+.post-title {
+    margin: 5px auto 30px auto;
+}
+a {
+    text-decoration: none;
+}
+.post-block:hover {
+    box-shadow: 5px 2px 3px;
+    opacity: 1;
+}
+a:hover {
+    opacity: 0.75;
+}
+h1 {
+    margin-bottom: 25px;
+}
+nav {
+    display: flex;
+    gap: 19px;
+}
+#profile-avatar {
+    height: 199px;
+    width: 199px;
+    border-radius: 50%;
+}
+#input {
+    width: 35%;
+    height: 30px;
+    resize: none;
+    border-radius: 15px;
+    font-size: 18px;
+    padding: 0 10px;
+}
+.paginate {
+    display: flex;
+    justify-content: center;
+}
+.post-image {
+    width: 500px;
+    height: 425px;
+    margin-bottom: 1em;
+}
+.post-detail-content {
+    display: flex;
+    flex-direction: column;
+}
+.delete-form {
+    display: flex;
+    gap: 25px;
+}
+#form-delete-yes {
+    width: 50px;
+}
+#form-delete-no {
+    width: 50px;
+}
+.comment-content {
+    border: 0.5px gray solid;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    padding: 2em;
+    display: flex;
+    gap: 5em;
+}
+.first-block-comment {
+    display: flex;
+    flex-direction: column;
+}
+.second-block-comment {
+    display: flex;
+    gap: 15px;
+}
+.user-comment {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.comment-text {
+    font-size: 21px;
+    margin-left: 2em;
+}
+.comment-image {
+    width: 200px;
+    height: 150px;
+    margin-left: 2em;
+}
+textarea {
+    resize: none;
+    height: 25px;
+    border-radius: 1em;
+    padding: 0 5px;
+    overflow: ;
+}
+form > p {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.comment-option {
+    width: 25px;
+    height: 25px;
+    filter: contrast(175%) brightness(3%)
+}
+.comment-option:hover {
+    filter: brightness(50%);
+}
+.main-text-comments {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin: 2.5em;
+}
+.write-button {
+    width: 100px;
+    height: 50px;
+    font-size: 21px;
+}
+.delete-block {
+    display: flex;
+    gap: 2em;
+}

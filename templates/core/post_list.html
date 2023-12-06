@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} | Посты{% endblock %}
+{% block content %}
+    {% if posts %}
+        <div class="post-list">
+        {% for post in posts %}
+            <a href="{% url 'post_detail' post.pk %}" class="post-link">
+                <div class="post-block">
+                    <h2 class="post-title">{{ post.title_of_post }}</h2>
+                    <p>{{ post.text_of_post }}</p>
+                    {% if post.created_by %}
+                        <span class="created-by">от:<img src="{{post.created_by.avatar.url}}" alt="#" class="avatar" /> {{ post.created_by }}</span>
+                    {% else %}
+                        <span class="created-by">от:<img src="../media/images/avatars/DELETED.png" alt="#" class="avatar" />УДАЛЕННЫЙ АККАУНТ</span>
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+        {% if is_paginated %}
+            <div class="paginate">
+                <span>
+                    {% if page_obj.has_previous %}
+                    <span>
+                        <a href="{{ request.path }}?page={{page_obj.previous_page_number}}">
+                            Назад
+                        </a>
+                    </span>
+                    {% endif %}
+                    <span>
+                        {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                    </span>
+                    {% if page_obj.has_next %}
+                    <span>
+                        <a href="{{ request.path }}?page={{page_obj.next_page_number}}">
+                            Вперед
+                        </a>
+                    </span>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

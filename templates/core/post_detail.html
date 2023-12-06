@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %} | {{ post.title_of_post }}{% endblock %}
+{% block content %}
+    <div class="post-detail-content">
+        <h2>{{ post.title_of_post }}</h2>
+        <p>{{ post.text_of_post }}</p>
+        {% if post.image_of_post %}
+            <img src="{{post.image_of_post.url}}" alt="#" class="post-image" />
+        {% endif %}
+        {% if post.created_by %}
+            <span>от:<img src="{{post.created_by.avatar.url}}" alt="#" class="avatar" /> {{ post.created_by }}</span>
+        {% else %}
+            <span>от:<img src="../media/images/avatars/DELETED.png" alt="#" class="avatar">УДАЛЛЕНЫЙ АККАУНТ</span>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="main-text-comments">
+        <h3>Комментарии</h3>
+        <a href="{% url 'comment_create' post.pk %}"><button class="write-button">Написать</button></a>
+    </div>
+    <div>
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment-content">
+                    <div class="first-block-comment">
+                        <div class="user-comment">
+                            <img src="{{ comment.upload_by.avatar.url }}" class="avatar" />
+                            <p>{{ comment.upload_by.username }}</p>
+                        </div>
+                        <p class="comment-text">{{ comment.text_of_comment }}</p>
+                        {% if comment.image_of_comment %}
+                            <img src="{{ comment.image_of_comment.url }}" alt="#" class="comment-image" />
+                        {% endif %}
+                    </div>
+                    {% if comment.upload_by == request.user %}
+                        <div class="second-block-comment">
+                            <a href="{% url 'comment_delete' post.pk comment.pk %}">
+                                <img src="../media/images/delete_comment.png" alt="#" class="comment-option"/>
+                            </a>
+                            <a href="{% url 'comment_update' post.pk comment.pk %}">
+                                <img src="../media/images/update_comment.png" alt="#" class="comment-option"/>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет комментариев</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} | Профиль{% endblock %}
+{% block content %}
+    <div>
+        <img src="{% if user.avatar %}{{user.avatar.url}}{% endif %}" alt="#" id="profile-avatar" />
+        <hr>
+        <div>
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.description }}</p>
+        </div>
+    </div>
+    {% if user.username == request.user.username %}
+        <a href="{% url 'user_update' user.pk %}">
+            <button>Редактировать</button>
+        </a>
+        <a href="{% url 'user_delete' user.pk %}">
+            <button>Удалить</button>
+        </a>
+    {% endif %}
+    {% if posts %}
+        <h3>Посты:</h3>
+        <div class="post-list">
+            {% for post in posts %}
+                <a href="{% url 'post_detail' post.pk %}" class="post-link">
+                    <div class="post-block">
+                        <h2 class="post-title">{{ post.title_of_post }}</h2>
+                        <p>{{ post.text_of_post }}</p>
+                        {% if post.created_by %}
+                            <span class="created-by">от:<img src="{{post.created_by.avatar.url}}" alt="#" class="avatar" /> {{ post.created_by }}</span>
+                        {% else %}
+                            <span class="created-by">от:<img src="../media/images/avatars/DELETED.png" alt="#" class="avatar" />УДАЛЕННЫЙ АККАУНТ</span>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
